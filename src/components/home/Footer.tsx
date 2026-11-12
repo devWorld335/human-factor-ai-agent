@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { PRODUCTS } from "../../data/products";
+import { TOKEN_CA } from "../../data/site";
 import { useSite } from "../siteContext";
 
 const EXPLORE: [string, string][] = [["#ecosystem", "Inside the system"]];
@@ -48,8 +49,6 @@ const SOCIAL: [string, string, () => ReactElement][] = [
   [TELEGRAM, "Telegram", TelegramIcon],
 ];
 
-const TOKEN_CA = "Virtual";
-
 export function Footer() {
   const site = useSite();
   return (
@@ -96,9 +95,9 @@ export function Footer() {
               aria-label="Copy token address"
               title="Token address"
               onClick={() => {
-                navigator.clipboard.writeText(TOKEN_CA).then(
+                navigator.clipboard.writeText(TOKEN_CA.address).then(
                   () => site.toast("Token address copied."),
-                  () => site.toast(TOKEN_CA),
+                  () => site.toast(TOKEN_CA.address),
                 );
               }}
             >

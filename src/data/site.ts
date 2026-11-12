@@ -69,12 +69,11 @@ export const HERO_PHASES: HeroPhase[] = [
 
 export const STORY_STAGES = ["MEET", "UNDERSTAND", "THINK", "ACT", "CONNECT"];
 
-/** BSC token launched on flap.sh. This is the token contract. */
+/** Placeholder contract shown until the HFT token is live. */
 export const TOKEN_CA = {
-  symbol: "BERNIE",
+  symbol: "HFT",
   chain: "BSC",
-  address: "0xd7ae9dc23d2e261454f548388d631bdff6a27777",
-  flap: "https://flap.sh/bnb/0xd7ae9dc23d2e261454f548388d631bdff6a27777",
+  address: "0x0000000000000000000000000000000000007777",
 };
 
 /** Capability chips around the hero robot: [reaction key, label, phase to jump to]. */

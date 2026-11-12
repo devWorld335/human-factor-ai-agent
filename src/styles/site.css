@@ -2811,6 +2811,7 @@ body:before {
   width: 52%;
   display: flex;
   align-items: stretch;
+  z-index: 6;
 }
 .agent-story .prompt-ca {
   flex: 1;
@@ -2825,6 +2826,9 @@ body:before {
   color: #ffb27a;
   font-size: 16px;
   line-height: 1.35;
+  cursor: copy;
+  user-select: text;
+  -webkit-user-select: text;
 }
 .agent-story .prompt-ca small {
   display: block;

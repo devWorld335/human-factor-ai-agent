@@ -66,6 +66,32 @@ export function Hero() {
     scrollTo({ top: span * (to / 4), behavior: scrollBehavior() });
   };
 
+  const copyAddress = () => {
+    const text = TOKEN_CA.address;
+    const done = () => {
+      setCopied(true);
+      site.toast("Address copied.");
+      window.setTimeout(() => setCopied(false), 1600);
+    };
+    const fallback = () => {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand("copy");
+      area.remove();
+      if (ok) done();
+    };
+    if (navigator.clipboard?.writeText) {
+      void navigator.clipboard.writeText(text).then(done, fallback);
+      return;
+    }
+    fallback();
+  };
+
   const p = HERO_PHASES[phase];
 
   return (
@@ -80,12 +106,7 @@ export function Hero() {
               type="button"
               id="prompt-copy"
               title="Copy the contract address"
-              onClick={() => {
-                void navigator.clipboard.writeText(TOKEN_CA.address).then(() => {
-                  setCopied(true);
-                  window.setTimeout(() => setCopied(false), 1600);
-                });
-              }}
+              onClick={copyAddress}
             >
               <small>
                 {TOKEN_CA.chain} · ${TOKEN_CA.symbol}
@@ -93,13 +114,7 @@ export function Hero() {
               {TOKEN_CA.address}
             </button>
           </div>
-          <div className="prompt-sub mono">
-            <a href={TOKEN_CA.flap} target="_blank" rel="noreferrer">
-              FLAP.SH
-            </a>
-            <br />
-            {copied ? "ADDRESS COPIED" : "SELECT THE ADDRESS TO COPY"}
-          </div>
+          <div className="prompt-sub mono">{copied ? "ADDRESS COPIED" : "SELECT THE ADDRESS TO COPY"}</div>
           <div className="analysis-label mono">
             <span className="pulse-dot" /> AGENT STATUS — ACTIVE<strong id="prompt-product">{p.product}</strong>
           </div>
