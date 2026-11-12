@@ -20,17 +20,6 @@ function XIcon() {
   );
 }
 
-function RobinhoodIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M19.2 3.2c-1.2 4.6-3.6 8.2-7.2 10.6-1.5 1-3.2 1.7-5 2.1 1.4-3.2 3.6-5.8 6.4-7.6 1.6-1 3.4-1.8 5.3-2.2.3 0 .5-.1.5-.3v-2.6zm-8.4 14.2c.4-1.6 1.2-3.1 2.3-4.4-2.2.8-4.1 2.2-5.5 4-.2.3-.1.6.2.7 1 .3 2 .2 3-.3z"
-      />
-    </svg>
-  );
-}
-
 function TelegramIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -52,10 +41,11 @@ function TokenIcon() {
   );
 }
 
+const TELEGRAM = "https://t.me/humanfactorapp";
+
 const SOCIAL: [string, string, () => ReactElement][] = [
-  ["https://x.com/humanfator", "X", XIcon],
-  ["https://robinhood.com/crypto/", "Robinhood scan", RobinhoodIcon],
-  ["https://t.me/humanfator", "Telegram", TelegramIcon],
+  ["https://x.com/humanfactorapp", "X", XIcon],
+  [TELEGRAM, "Telegram", TelegramIcon],
 ];
 
 const TOKEN_CA = "Virtual";
@@ -80,7 +70,9 @@ export function Footer() {
               {label}
             </a>
           ))}
-          <button onClick={site.contact}>Get in touch</button>
+          <a href={TELEGRAM} target="_blank" rel="noreferrer">
+            Get in touch
+          </a>
         </div>
         <div>
           <h4>THE DETAILS</h4>
