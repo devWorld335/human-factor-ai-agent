@@ -69,7 +69,7 @@ export const HERO_PHASES: HeroPhase[] = [
 
 export const STORY_STAGES = ["MEET", "UNDERSTAND", "THINK", "ACT", "CONNECT"];
 
-/** Placeholder contract shown until the HFT token is live. */
+/** Shown until /api/ca returns an address and name. */
 export const TOKEN_CA = {
   symbol: "HFT",
   chain: "BSC",

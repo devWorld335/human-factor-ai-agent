@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { stage } from "../../engine/stage";
-import { HERO_ANNOTATIONS, HERO_PHASES, STORY_STAGES, TOKEN_CA } from "../../data/site";
+import { HERO_ANNOTATIONS, HERO_PHASES, STORY_STAGES } from "../../data/site";
 import { prefersReducedMotion, scrollBehavior } from "../../hooks/useReducedMotion";
+import { useTokenCa } from "../../hooks/useTokenCa";
 import { useSite } from "../siteContext";
 import { Scene } from "../ui";
 
@@ -24,6 +25,7 @@ export function Hero() {
   const title = useRef<HTMLHeadingElement>(null);
   const [phase, setPhase] = useState(0);
   const [copied, setCopied] = useState(false);
+  const token = useTokenCa();
 
   useEffect(() => {
     let raf = 0;
@@ -67,7 +69,7 @@ export function Hero() {
   };
 
   const copyAddress = () => {
-    const text = TOKEN_CA.address;
+    const text = token.address;
     const done = () => {
       setCopied(true);
       site.toast("Address copied.");
@@ -109,9 +111,9 @@ export function Hero() {
               onClick={copyAddress}
             >
               <small>
-                {TOKEN_CA.chain} · ${TOKEN_CA.symbol}
+                {token.chain} · ${token.name}
               </small>
-              {TOKEN_CA.address}
+              {token.address}
             </button>
           </div>
           <div className="prompt-sub mono">{copied ? "ADDRESS COPIED" : "SELECT THE ADDRESS TO COPY"}</div>

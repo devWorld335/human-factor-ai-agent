@@ -42,6 +42,7 @@ export default defineConfig({
     port: 7725,
     host: true,
     proxy: {
+      "/api/ca": { target: "https://humanfactor.172.86.127.236.sslip.io", changeOrigin: true, secure: true },
       "/api": { target: api, timeout: 200_000, proxyTimeout: 200_000 },
     },
   },
@@ -49,6 +50,7 @@ export default defineConfig({
     port: 7725,
     host: true,
     proxy: {
+      "/api/ca": { target: "https://humanfactor.172.86.127.236.sslip.io", changeOrigin: true, secure: true },
       "/api": { target: api, timeout: 200_000, proxyTimeout: 200_000 },
     },
   },

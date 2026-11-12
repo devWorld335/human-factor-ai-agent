@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { PRODUCTS } from "../../data/products";
-import { TOKEN_CA } from "../../data/site";
+import { useTokenCa } from "../../hooks/useTokenCa";
 import { useSite } from "../siteContext";
 
 const EXPLORE: [string, string][] = [["#ecosystem", "Inside the system"]];
@@ -51,6 +51,7 @@ const SOCIAL: [string, string, () => ReactElement][] = [
 
 export function Footer() {
   const site = useSite();
+  const token = useTokenCa();
   return (
     <footer id="footer" data-label="FOOTER">
       <div className="footer-links">
@@ -95,9 +96,9 @@ export function Footer() {
               aria-label="Copy token address"
               title="Token address"
               onClick={() => {
-                navigator.clipboard.writeText(TOKEN_CA.address).then(
+                navigator.clipboard.writeText(token.address).then(
                   () => site.toast("Token address copied."),
-                  () => site.toast(TOKEN_CA.address),
+                  () => site.toast(token.address),
                 );
               }}
             >
